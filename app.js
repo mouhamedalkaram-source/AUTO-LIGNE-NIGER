@@ -131,6 +131,7 @@ async function apiRequest(path, options = {}) {
     const response = await fetch(path, {
       headers: {
         "Content-Type": "application/json",
+        ...(currentUser?.token ? { "X-Session-Token": currentUser.token } : {}),
         ...(options.headers || {})
       },
       ...options
@@ -144,7 +145,7 @@ async function apiRequest(path, options = {}) {
     return payload;
   } catch (error) {
     if (error.message === "Load failed" || error instanceof TypeError) {
-      throw new Error("Impossible d’envoyer l’annonce. Vérifiez que le serveur est lancé et que la photo n’est pas trop lourde.");
+      throw new Error("Impossible de contacter le serveur pour le moment.");
     }
 
     throw error;
@@ -701,7 +702,7 @@ authForm.addEventListener("submit", async (event) => {
         body: JSON.stringify({ email, password, firstName, lastName })
       });
       cars = mergeCars(payload.cars || [], loadLocalCars());
-      saveSession(payload.user);
+      saveSession({ ...payload.user, token: payload.token || "" });
       authForm.reset();
       renderAuth();
       return;
@@ -712,7 +713,7 @@ authForm.addEventListener("submit", async (event) => {
       body: JSON.stringify({ email, password })
     });
     cars = mergeCars(payload.cars || [], loadLocalCars());
-    saveSession(payload.user);
+    saveSession({ ...payload.user, token: payload.token || "" });
     authForm.reset();
     renderAuth();
   } catch (error) {
