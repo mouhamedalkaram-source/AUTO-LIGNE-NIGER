@@ -1,0 +1,10 @@
+{
+  "name": "auto-ligne-niger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plateforme automobile Auto Ligne Niger",
+  "scripts": {
+    "start": "python3 server.py",
+    "serve": "python3 server.py"
+  }
+}

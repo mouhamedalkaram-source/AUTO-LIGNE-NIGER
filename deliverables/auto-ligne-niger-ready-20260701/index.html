@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto Ligne Niger</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#accueil" aria-label="Auto Ligne Niger">
+        <img class="site-logo" src="assets/auto-ligne-logo.jpg" alt="Logo Auto Ligne Niger" />
+        <span>
+          <strong>Auto Ligne Niger</strong>
+          <small>Plateforme automobile</small>
+        </span>
+      </a>
+
+      <nav class="nav" id="siteNav" aria-label="Navigation principale" hidden>
+        <a href="#annonces">Annonces</a>
+        <a href="#dashboard">Mon espace</a>
+        <a href="#admin" id="adminNavLink" hidden>Administration</a>
+        <a class="nav-cta" href="#publier">Publier</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="auth-shell" id="connexion">
+      <div class="auth-copy">
+        <span class="pill">Accès sécurisé</span>
+        <h1>Connectez-vous pour utiliser Auto Ligne Niger</h1>
+        <p>
+          Les visiteurs doivent avoir un compte. Les vendeurs publient eux-mêmes leurs
+          voitures, modifient leurs annonces et suppriment les véhicules vendus.
+        </p>
+      </div>
+
+      <div class="auth-panel">
+        <div class="auth-status">
+          <div>
+            <p class="eyebrow">Compte utilisateur</p>
+            <h2 id="authTitle">Connexion ou inscription</h2>
+            <p id="authText">Créez un compte ou connectez-vous avec votre email.</p>
+            <p class="role-badge" id="authRole">Visiteur</p>
+          </div>
+          <button class="button ghost" id="logoutButton" type="button" hidden>Se déconnecter</button>
+        </div>
+
+        <form class="auth-form" id="authForm">
+          <label>
+            Nom
+            <input name="lastName" placeholder="Votre nom" />
+          </label>
+          <label>
+            Prénom
+            <input name="firstName" placeholder="Votre prénom" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required placeholder="exemple@mail.com" />
+          </label>
+          <label>
+            Mot de passe
+            <span class="password-field">
+              <input name="password" type="password" required placeholder="Votre mot de passe" />
+              <button class="password-toggle" type="button" data-password-toggle="password" aria-label="Afficher le mot de passe">👁</button>
+            </span>
+          </label>
+          <label>
+            Confirmation
+            <span class="password-field">
+              <input name="confirmPassword" type="password" placeholder="Confirmer le mot de passe" />
+              <button class="password-toggle" type="button" data-password-toggle="confirmPassword" aria-label="Afficher la confirmation">👁</button>
+            </span>
+          </label>
+          <div class="auth-actions">
+            <button class="button primary" type="submit" data-auth-action="login">Se connecter</button>
+            <button class="button secondary" type="submit" data-auth-action="register">Créer un compte</button>
+          </div>
+          <p id="authMessage" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <main id="siteContent" hidden>
+      <section class="hero" id="accueil">
+        <div class="hero-content">
+          <span class="pill">Marché automobile du Niger</span>
+          <h1>Voitures à vendre au Niger.</h1>
+          <p>Publiez, cherchez et contactez le vendeur en quelques secondes.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#publier">Publier une voiture</a>
+            <a class="button secondary" href="#dashboard">Gérer mes annonces</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-card main-car">
+            <img class="hero-logo" src="assets/auto-ligne-logo.jpg" alt="" />
+          </div>
+          <div class="floating-stat">
+            <strong id="heroTotalCars">0</strong>
+            <span>annonces actives</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Résumé">
+        <div>
+          <strong id="totalCars">0</strong>
+          <span>voitures publiées</span>
+        </div>
+        <div>
+          <strong id="myCarsCount">0</strong>
+          <span>mes annonces</span>
+        </div>
+        <div>
+          <strong>FCFA</strong>
+          <span>monnaie utilisée</span>
+        </div>
+        <div>
+          <strong>Niger</strong>
+          <span>marché principal</span>
+        </div>
+      </section>
+
+      <section class="section" id="annonces">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Catalogue</p>
+            <h2>Voitures disponibles</h2>
+          </div>
+          <button class="button ghost" id="resetFilters" type="button">Réinitialiser</button>
+        </div>
+
+        <form class="filters" id="filtersForm">
+          <label>
+            Marque ou modèle
+            <input id="filterBrand" type="search" placeholder="Toyota, Mercedes..." />
+          </label>
+          <label>
+            Ville
+            <input id="filterCity" type="search" placeholder="Niamey, Maradi..." />
+          </label>
+          <label>
+            Prix maximum
+            <input id="filterPrice" type="number" min="0" step="50000" placeholder="Ex: 5000000" />
+          </label>
+        </form>
+
+        <div class="cars-grid" id="carsGrid" aria-live="polite"></div>
+        <p class="empty-state" id="emptyState" hidden>Aucune voiture ne correspond à cette recherche.</p>
+      </section>
+
+      <section class="section dashboard-section" id="dashboard">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Espace utilisateur</p>
+            <h2>Mes annonces</h2>
+            <p class="section-note" id="dashboardNote">Connectez-vous pour gérer vos annonces.</p>
+          </div>
+          <a class="button secondary" href="#publier">Ajouter une voiture</a>
+        </div>
+
+        <div class="dashboard-grid" id="dashboardGrid" aria-live="polite"></div>
+        <p class="empty-state" id="dashboardEmpty" hidden>Vous n’avez pas encore publié de voiture.</p>
+      </section>
+
+      <section class="section publish-section" id="publier">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Publication autonome</p>
+            <h2 id="formTitle">Ajouter une voiture</h2>
+            <p class="section-note" id="publishNote">Connectez-vous pour publier une voiture.</p>
+          </div>
+          <button class="button ghost" id="cancelEditButton" type="button" hidden>Annuler la modification</button>
+        </div>
+
+        <form class="publish-form" id="carForm">
+          <input name="carId" type="hidden" />
+          <div class="form-grid">
+            <label>
+              Marque
+              <input name="brand" required placeholder="Toyota" />
+            </label>
+            <label>
+              Modèle
+              <input name="model" required placeholder="Corolla" />
+            </label>
+            <label>
+              Prix en FCFA
+              <input name="price" type="number" min="0" step="50000" required placeholder="4500000" />
+            </label>
+            <label>
+              Ville
+              <input name="city" required placeholder="Niamey" />
+            </label>
+            <label>
+              Boîte
+              <select name="gearbox">
+                <option>Automatique</option>
+                <option>Manuelle</option>
+              </select>
+            </label>
+            <label>
+              Téléphone
+              <input name="phone" required placeholder="+227 90 00 00 00" />
+            </label>
+            <label>
+              Photos
+              <input name="photos" type="file" accept="image/*" multiple />
+            </label>
+          </div>
+
+          <label>
+            Description
+            <textarea name="description" rows="4" placeholder="État, documents, options, négociation..."></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button class="button primary" id="submitCarButton" type="submit">Publier l’annonce</button>
+            <p id="formMessage" role="status"></p>
+          </div>
+        </form>
+      </section>
+
+      <section class="section admin-section" id="admin" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Administration</p>
+            <h2>Panneau administrateur</h2>
+            <p class="section-note">Gérez les utilisateurs, les annonces et la visibilité du site.</p>
+          </div>
+        </div>
+
+        <div class="admin-stats" id="adminStats"></div>
+
+        <section class="admin-panel admin-security">
+          <div class="panel-heading">
+            <h3>Sécurité administrateur</h3>
+            <p>Choisissez un mot de passe fort pour le compte admin.</p>
+          </div>
+          <form class="admin-password-form" id="adminPasswordForm">
+            <label>
+              Mot de passe actuel
+              <input name="currentPassword" type="password" required placeholder="Mot de passe actuel" />
+            </label>
+            <label>
+              Nouveau mot de passe
+              <input name="newPassword" type="password" required placeholder="Au moins 10 caractères" />
+            </label>
+            <label>
+              Confirmation
+              <input name="confirmPassword" type="password" required placeholder="Confirmer le nouveau mot de passe" />
+            </label>
+            <div class="form-actions">
+              <button class="button primary" type="submit">Mettre à jour</button>
+              <p id="adminPasswordMessage" role="status"></p>
+            </div>
+          </form>
+        </section>
+
+        <div class="admin-layout">
+          <section class="admin-panel">
+            <div class="panel-heading">
+              <h3>Utilisateurs</h3>
+              <p id="adminUsersNote">Tous les comptes inscrits</p>
+            </div>
+            <div class="admin-users" id="adminUsers"></div>
+          </section>
+
+          <section class="admin-panel">
+            <div class="panel-heading">
+              <h3>Modération des annonces</h3>
+              <p id="adminCarsNote">Activez, masquez ou mettez en attente</p>
+            </div>
+            <div class="admin-cars" id="adminCars"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="contact-band" id="contact">
+        <div>
+          <p class="eyebrow">Contact Auto Ligne Niger</p>
+          <h2>Besoin d’aide pour utiliser la plateforme ?</h2>
+          <p>Appelez l’équipe pour une assistance sur la publication ou la gestion d’annonce.</p>
+          <div class="site-contacts" aria-label="Contacts Auto Ligne Niger">
+            <a href="tel:+22797520602">+227 97 52 06 02</a>
+            <a href="tel:+22799478546">+227 99 47 85 46</a>
+          </div>
+        </div>
+        <a class="button secondary" href="#publier">Publier</a>
+      </section>
+    </main>
+
+    <footer class="footer" id="siteFooter" hidden>
+      <span>© 2026 Auto Ligne Niger</span>
+      <span>Plateforme automatisée de vente de voitures</span>
+    </footer>
+
+    <div class="car-modal" id="carModal" hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" data-close-modal aria-label="Fermer">×</button>
+        <div class="modal-photo" id="modalPhoto"></div>
+        <div class="modal-content">
+          <p class="eyebrow" id="modalCity"></p>
+          <h2 id="modalTitle"></h2>
+          <strong class="modal-price" id="modalPrice"></strong>
+          <ul class="modal-meta" id="modalMeta"></ul>
+          <p id="modalDescription"></p>
+          <div class="modal-actions">
+            <a class="button primary" id="modalWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="button secondary" id="modalCall" href="#">Appeler</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script src="app.js?v=admin-panel-1"></script>
+  </body>
+</html>

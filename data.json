@@ -1,0 +1,80 @@
+{
+  "users": [
+    {
+      "email": "auto-ligne-niger@local",
+      "firstName": "Auto",
+      "lastName": "Ligne Niger",
+      "fullName": "Auto Ligne Niger",
+      "password": "",
+      "role": "system",
+      "blocked": false
+    },
+    {
+      "email": "alkaram.ichirif@gmail.com",
+      "firstName": "MOHAMED",
+      "lastName": "ALKARAM",
+      "fullName": "MOHAMED ALKARAM",
+      "password": "",
+      "role": "admin",
+      "blocked": false,
+      "passwordHash": "lnGqXDqmjWNyd2q6C4Z4TchD0EyH7LJVhjDg7NaUSHo=",
+      "passwordSalt": "SZv559YqtJmcYEAp2bVqDA=="
+    }
+  ],
+  "cars": [
+    {
+      "id": "sample-1",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "year": 2017,
+      "price": 5200000,
+      "city": "Niamey",
+      "mileage": 91000,
+      "fuel": "Essence",
+      "gearbox": "Automatique",
+      "phone": "+227 90 12 34 56",
+      "description": "Voiture propre, climatisation, papiers à jour, prête à rouler.",
+      "sellerId": "demo@autoligne.ne",
+      "sellerName": "Auto Ligne Niger",
+      "photo": "",
+      "photos": [],
+      "status": "active"
+    },
+    {
+      "id": "sample-2",
+      "brand": "Mercedes-Benz",
+      "model": "C 200",
+      "year": 2015,
+      "price": 8500000,
+      "city": "Maradi",
+      "mileage": 126000,
+      "fuel": "Essence",
+      "gearbox": "Automatique",
+      "phone": "+227 96 40 20 10",
+      "description": "Bon état général, intérieur cuir, moteur très propre.",
+      "sellerId": "demo@autoligne.ne",
+      "sellerName": "Auto Ligne Niger",
+      "photo": "",
+      "photos": [],
+      "status": "active"
+    },
+    {
+      "id": "sample-3",
+      "brand": "Hyundai",
+      "model": "Tucson",
+      "year": 2019,
+      "price": 11200000,
+      "city": "Zinder",
+      "mileage": 74000,
+      "fuel": "Diesel",
+      "gearbox": "Manuelle",
+      "phone": "+227 91 55 66 77",
+      "description": "SUV familial, entretien régulier, idéal pour route et ville.",
+      "sellerId": "demo@autoligne.ne",
+      "sellerName": "Auto Ligne Niger",
+      "photo": "",
+      "photos": [],
+      "status": "active"
+    }
+  ]
+}
