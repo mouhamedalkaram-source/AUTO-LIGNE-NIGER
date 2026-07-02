@@ -6,8 +6,11 @@ Projet complet du site Auto Ligne Niger, pret a etre lance localement puis publi
 
 - `index.html` : structure du site
 - `styles.css` : design et responsive
-- `app.js` : logique client
-- `server.py` : serveur HTTP + API
+- `assets/app.client.js` : logique client
+- `server.py` : serveur HTTP + API Python
+- `server.js` : serveur local Node.js
+- `server-core.js` : logique serveur partagee
+- `api/index.js` : fonction Vercel pour `/api/*`
 - `data.json` : donnees des comptes et annonces
 - `assets/` : logo et images statiques
 - `uploads/` : images envoyees par les utilisateurs
