@@ -2,18 +2,18 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "functions": {
-    "api/router.js": {
+    "api/index.js": {
       "maxDuration": 10
     }
   },
   "rewrites": [
     {
       "source": "/api",
-      "destination": "/api/router"
+      "destination": "/api/index"
     },
     {
       "source": "/api/(.*)",
-      "destination": "/api/router?path=$1"
+      "destination": "/api/index?path=$1"
     }
   ]
 }
